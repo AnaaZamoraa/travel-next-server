@@ -1,4 +1,6 @@
 const { Schema, model } = require("mongoose");
+const bcrypt = require("bcryptjs")
+const jwt = require('jsonwebtoken')
 
 const userSchema = new Schema(
   {

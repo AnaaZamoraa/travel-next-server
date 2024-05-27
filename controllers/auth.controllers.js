@@ -1,11 +1,9 @@
-// controllers/auth.controllers.js
 const User = require("../models/User.model");
 
 const signup = (req, res, next) => {
-  const { username, email, password, role, age, favorites } = req.body;
-  const avatar = req.file ? req.file.path : undefined;
+  const { username, email, password, age, imageUrl } = req.body;
 
-  User.create({ username, email, password, avatar, role, age, favorites })
+  User.create({ username, email, password, age, avatar: imageUrl })
     .then(() => res.sendStatus(201))
     .catch(err => next(err));
 };
@@ -27,7 +25,7 @@ const login = (req, res, next) => {
 
       if (foundUser.validatePassword(password)) {
         const authToken = foundUser.signToken();
-        res.status(200).json({ authToken });
+        res.status(200).json({ authToken, username: foundUser.username });
       } else {
         res.status(401).json({ errorMessages: ["Credentials don't match"] });
       }
