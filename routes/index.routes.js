@@ -10,4 +10,7 @@ router.use("/user", userRoutes);
 const uploadRoutes = require("./upload.routes")
 router.use("/upload", uploadRoutes)
 
+const travelRoutes = require ("./travel.routes")
+router.use("/travels", travelRoutes)
+
 module.exports = router;
