@@ -13,4 +13,7 @@ router.use("/upload", uploadRoutes)
 const travelRoutes = require ("./travel.routes")
 router.use("/travels", travelRoutes)
 
+const activityRoutes = require ("./activity.routes")
+router.use("/activities", activityRoutes)
+
 module.exports = router;
