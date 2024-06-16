@@ -1,10 +1,10 @@
 const router = require('express').Router()
 
-const {
-    createActivity,
+const { 
+    createActivity, 
+    getValidTypes } = require('../controllers/activity.controllers');
 
-} = require("../controllers/activity.controllers")
-
-router.post('/create', createActivity)
+router.post('/create', createActivity);
+router.get('/valid-types', getValidTypes);
 
 module.exports = router

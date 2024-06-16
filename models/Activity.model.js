@@ -58,4 +58,4 @@ activitySchema.index({ location: '2dsphere' });
 
 const Activity = model("activity", activitySchema);
 
-module.exports = Activity;
+module.exports = { Activity, validTypes }

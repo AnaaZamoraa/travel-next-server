@@ -1,4 +1,4 @@
-const Activity = require("../models/Activity.model")
+const { Activity, validTypes } = require("../models/Activity.model");
 
 const createActivity = (req, res, next) => {
     const { title, type, pictutes, description, ratings} = req.body;
@@ -9,6 +9,11 @@ const createActivity = (req, res, next) => {
     .catch(err => next(err));
 };
 
+const getValidTypes = (req, res) => {
+    res.json(validTypes);
+};
+
 module.exports = {
-    createActivity
+    createActivity, 
+    getValidTypes
 };
