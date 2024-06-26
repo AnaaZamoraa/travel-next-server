@@ -16,6 +16,27 @@ const createTravel = (req, res, next) => {
         .catch(err => next(err));
 };
 
+const getAllTravels = (req, res, next) => {
+    Travel
+    .find()
+    .sort({ createdAt: -1 })
+    .populate('owner')
+    .then((travels) => res.json(travels))
+    .catch(err => next(err))
+}
+const getTravelById = (req, res, next) => {
+
+    const {id} = req.params
+
+    Travel
+    .findById(id)
+    .populate('owner')
+    .then(travel => res.status(200).json(travel))
+    .catch(err => next(err))
+}
+
 module.exports = {
-    createTravel
+    createTravel,
+    getAllTravels,
+    getTravelById
 };
