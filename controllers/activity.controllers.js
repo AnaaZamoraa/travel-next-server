@@ -22,8 +22,19 @@ const getAllActivities = (req, res, next) => {
     .catch(err => next(err))
 }
 
+const getActivityById = (req, res, next) => {
+    const { id } = req.params;
+    Activity
+        .findById(id)
+        .populate('owner')
+        .then((activity) => res.status(200).json(activity))
+        .catch(err => next(err));
+};
+
+
 module.exports = {
     getValidTypes,
     createActivity, 
-    getAllActivities
+    getAllActivities,
+    getActivityById
 };

@@ -30,7 +30,7 @@ const getTravelById = (req, res, next) => {
 
     Travel
     .findById(id)
-    .populate('owner')
+    .populate('activities')
     .then(travel => res.status(200).json(travel))
     .catch(err => next(err))
 }
