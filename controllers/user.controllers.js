@@ -4,9 +4,10 @@ const jwt = require('jsonwebtoken');
 const profile = (req, res, next) => {
     const { _id: id } = req.payload;
 
-    User.findById(id)
-        .then(response => res.json(response))
-        .catch(err => next(err));
+    User
+    .findById(id)
+    .then(response => res.json(response))
+    .catch(err => next(err));
 };
 
 const editUser = (req, res, next) => {
@@ -18,7 +19,8 @@ const editUser = (req, res, next) => {
         avatar = req.file.path;
     }
 
-    User.findByIdAndUpdate(id, { username, email, avatar, age }, { new: true })
+    User
+        .findByIdAndUpdate(id, { username, email, avatar, age }, { new: true })
         .then((user) => {
             const { username, email, avatar, age } = user;
             const payload = { username, email, avatar, age };
@@ -37,7 +39,8 @@ const editUser = (req, res, next) => {
 const deleteUser = (req, res, next) => {
     const { _id: id } = req.payload;
 
-    User.findByIdAndDelete(id)
+    User
+        .findByIdAndDelete(id)
         .then(response => res.json({ msg: 'User was deleted!' }))
         .catch(err => next(err));
 };

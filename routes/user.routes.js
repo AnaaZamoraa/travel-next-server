@@ -7,8 +7,10 @@ const {
 
 } = require("../controllers/user.controllers")
 
-router.post('/profile', profile)
-router.post('/editUser', editUser)
-router.get('/deleteUser', deleteUser)
+const {verifyToken} = require('../middlewares/verifyToken')
+
+router.get('/profile/:id', verifyToken, profile)
+router.post('/editUser/:id', verifyToken, editUser)
+router.delete('/deleteUser/:id', verifyToken, deleteUser)
 
 module.exports = router
