@@ -31,10 +31,21 @@ const getActivityById = (req, res, next) => {
         .catch(err => next(err));
 };
 
+const getActivitiesByUser = (req, res, next) => {
+    const owner = req.payload._id
+
+    Activity
+        .find({ 'owner': owner })
+        .sort({ title: 1 })
+        .then(response => res.json(response))
+        .catch(err => next(err))
+}
+
 
 module.exports = {
     getValidTypes,
     createActivity, 
     getAllActivities,
-    getActivityById
+    getActivityById,
+    getActivitiesByUser
 };

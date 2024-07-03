@@ -35,8 +35,19 @@ const getTravelById = (req, res, next) => {
     .catch(err => next(err))
 }
 
+const getTravelsByUser = (req, res, next) => {
+    const owner = req.payload._id
+
+    Travel
+        .find({ 'owner': owner })
+        .sort({ title: 1 })
+        .then(response => res.json(response))
+        .catch(err => next(err))
+}
+
 module.exports = {
     createTravel,
     getAllTravels,
-    getTravelById
+    getTravelById,
+    getTravelsByUser
 };
