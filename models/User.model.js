@@ -32,11 +32,11 @@ const userSchema = new Schema(
     favorites:{
       travels: [{
         type: Schema.Types.ObjectId,
-        ref: 'travel'
+        ref: 'Travel'
       }],
       activities: [{
         type: Schema.Types.ObjectId,
-        ref: 'activity'
+        ref: 'Activity'
       }]
     }
   },
@@ -56,8 +56,8 @@ userSchema.pre('save', function (next) {
 })
 
 userSchema.methods.signToken = function () {
-  const { username, email, avatar, role, age } = this
-  const payload = { username, email, avatar, role, age }
+  const { _id, username, email, avatar, role, age } = this
+  const payload = { _id, username, email, avatar, role, age }
 
   const authToken = jwt.sign(
     payload,
@@ -72,6 +72,6 @@ userSchema.methods.validatePassword = function (possiblePassword) {
   return bcrypt.compareSync(possiblePassword, this.password)
 }
 
-const User = model("user", userSchema);
+const User = model("User", userSchema);
 
 module.exports = User;

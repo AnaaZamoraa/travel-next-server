@@ -4,14 +4,14 @@ const {verifyToken} = require('../middlewares/verifyToken')
 const { 
     createActivity, 
     getValidTypes,
-    getAllActivities,
+    getActivities,
     getActivityById,
     getActivitiesByUser
 } = require('../controllers/activity.controllers');
 
-router.get('/valid-types', getValidTypes);
-router.post('/create', createActivity);
-router.get('/all-activities', getAllActivities)
+router.get('/valid-types', verifyToken, getValidTypes);
+router.post('/create', verifyToken, createActivity);
+router.get('/all-activities', getActivities)
 router.get('/me', verifyToken, getActivitiesByUser)
 router.get('/:id', getActivityById)
 

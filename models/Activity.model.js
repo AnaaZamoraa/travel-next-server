@@ -42,13 +42,13 @@ const activitySchema = new Schema(
             required: true
         },
         owner: {
-            ref: 'user',
+            ref: 'User',
             type: Schema.Types.ObjectId,
             required: true
         }
     }],
     owner: {
-        ref: 'user',
+        ref: 'User',
         type: Schema.Types.ObjectId
     }
   }
@@ -56,6 +56,6 @@ const activitySchema = new Schema(
 
 activitySchema.index({ location: '2dsphere' });
 
-const Activity = model("activity", activitySchema);
+const Activity = model("Activity", activitySchema);
 
 module.exports = { Activity, validTypes }

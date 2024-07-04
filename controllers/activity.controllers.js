@@ -6,16 +6,18 @@ const getValidTypes = (req, res) => {
 
 const createActivity = (req, res, next) => {
     const { title, type, pictures, description, ratings} = req.body;
-
+    const owner = req.payload._id
     Activity
-    .create({ title, type, pictures, description, ratings })
+    .create({ title, type, pictures, description, ratings, owner })
     .then(() => res.sendStatus(201))
     .catch(err => next(err));
 };
 
-const getAllActivities = (req, res, next) => {
+const getActivities = (req, res, next) => {
+    let query = {}
+
     Activity
-    .find()
+    .find(query)
     .sort({ createdAt: -1 })
     .populate('owner')
     .then((activities) => res.json(activities))
@@ -33,6 +35,7 @@ const getActivityById = (req, res, next) => {
 
 const getActivitiesByUser = (req, res, next) => {
     const owner = req.payload._id
+    console.log(req.payload)
 
     Activity
         .find({ 'owner': owner })
@@ -45,7 +48,7 @@ const getActivitiesByUser = (req, res, next) => {
 module.exports = {
     getValidTypes,
     createActivity, 
-    getAllActivities,
+    getActivities,
+    getActivitiesByUser,
     getActivityById,
-    getActivitiesByUser
 };

@@ -19,7 +19,7 @@ const travelSchema = new Schema(
       type: [String]
     },
     activities:[{
-      ref: 'activity',
+      ref: 'Activity',
       type: Schema.Types.ObjectId,
     }],
     tips:{
@@ -32,17 +32,17 @@ const travelSchema = new Schema(
           required: true
       },
       owner: {
-          ref: 'user',
+          ref: 'User',
           type: Schema.Types.ObjectId,
           required: true
       }
     }],
     owner:{
-      ref: 'user',
+      ref: 'User',
       type: Schema.Types.ObjectId
     }
 });
 
-const Travel = model("travel", travelSchema);
+const Travel = model("Travel", travelSchema);
 
 module.exports = Travel;
