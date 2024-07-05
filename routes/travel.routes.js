@@ -9,7 +9,7 @@ const {
 } = require("../controllers/travel.controllers")
 
 router.post('/create', verifyToken, createTravel)
-router.get('/all-travels', getTravels)
+router.get('/get-travels', getTravels)
 router.get('/me', verifyToken, getTravelsByUser)
 router.get('/:id', getTravelById)
 

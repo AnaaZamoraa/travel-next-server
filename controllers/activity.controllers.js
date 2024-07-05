@@ -15,6 +15,18 @@ const createActivity = (req, res, next) => {
 
 const getActivities = (req, res, next) => {
     let query = {}
+    const {location, type} = req.query
+    const conditions = []
+
+    if(location){
+        conditions.push({ location: location })
+    }
+    if(type){
+        conditions.push({ type: type})
+    }
+    if(conditions.length > 0){
+        query = { $and: conditions }
+    }
 
     Activity
     .find(query)

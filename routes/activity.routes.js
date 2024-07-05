@@ -11,7 +11,7 @@ const {
 
 router.get('/valid-types', verifyToken, getValidTypes);
 router.post('/create', verifyToken, createActivity);
-router.get('/all-activities', getActivities)
+router.get('/get-activities', getActivities)
 router.get('/me', verifyToken, getActivitiesByUser)
 router.get('/:id', getActivityById)
 

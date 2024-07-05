@@ -22,15 +22,22 @@ const createTravel = (req, res, next) => {
 const getTravels = (req, res, next) => {
     let query = {}
     const {location, days, persons} = req.query
-    if (days){
-        query = {$and: [
-            {days: days}
-        ]}
+    const conditions = [];
+
+    if (location) {
+        conditions.push({ location: location });
     }
-    if (persons){
-        query = {$and: [
-            {persons: persons}
-        ]}
+
+    if (days) {
+        conditions.push({ days: days });
+    }
+
+    if (persons) {
+        conditions.push({ persons: persons });
+    }
+
+    if (conditions.length > 0) {
+        query = { $and: conditions };
     }
 
     Travel
